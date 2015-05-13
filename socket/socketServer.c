@@ -18,7 +18,7 @@ int main(void)
 
     serverAddress.sun_family = AF_UNIX;
     strcpy(serverAddress.sun_path, "server_socket");
-	//change unnamed socket to named socket by bind function.
+    //change unnamed socket to named socket by bind function.
     bind(serverSockFd, (struct sockaddr *)&serverAddress, sizeof(serverAddress));
     listen(serverSockFd, 5);//create a listen queue that to wait for client to connect...
     while(1)
@@ -27,14 +27,14 @@ int main(void)
         printf("the server is waiting\n");
 
         clientLen = sizeof(clientAddress);
-		//accept a connection from client.
+        //accept a connection from client.
         clientSockFd = accept(serverSockFd, (struct sockaddr *)&clientAddress, &clientLen);
-		//read from client.
+        //read from client.
         read(clientSockFd, &ch, 1);
         ch ++;
-		//write to client.
+        //write to client.
         write(clientSockFd, &ch, 1);
-		//close client socket.
+        //close client socket.
         close(clientSockFd);
         exit(0);
     }
